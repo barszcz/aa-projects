@@ -34,4 +34,16 @@ class Card
     VALUE_STRINGS.has_key?(value) && SUIT_STRINGS.has_key?(suit)
   end
 
+  def ==(other_card)
+    self.value == other_card.value && self.suit == other_card.suit
+  end
+
+  def self.suits
+    SUIT_STRINGS.keys
+  end
+
+  def self.values
+    VALUE_STRINGS.keys
+  end
+
 end
