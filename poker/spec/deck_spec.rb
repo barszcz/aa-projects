@@ -60,7 +60,7 @@ describe 'Deck' do
 
   end
 
-  describe '#return' do
+  describe '#return_to_deck' do
 
     let(:returned_cards) do
       [
@@ -72,7 +72,7 @@ describe 'Deck' do
 
     let(:deck) { Deck.new([Card.new(:queen, :diamonds)]) }
 
-    before(:each) { deck.return(returned_cards) }
+    before(:each) { deck.return_to_deck(returned_cards) }
 
     it 'adds card to the deck' do
       expect(deck.count).to eq(4)
@@ -81,9 +81,6 @@ describe 'Deck' do
     it 'adds cards to bottom of the deck' do
       expect(deck.cards.drop(1)).to eq(returned_cards)
     end
-
-
-
 
   end
 

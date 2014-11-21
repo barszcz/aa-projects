@@ -31,7 +31,7 @@ class Deck
     @cards.shift(n)
   end
 
-  def return(return_cards)
+  def return_to_deck(return_cards)
     @cards.concat(return_cards)
   end
 
