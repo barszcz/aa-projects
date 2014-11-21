@@ -39,6 +39,14 @@ class Card
     :ace => 14
   }
 
+  def self.suits
+    SUIT_STRINGS.keys
+  end
+
+  def self.values
+    CARD_VALUES.keys
+  end
+
   attr_reader :value, :suit
 
   def initialize(value, suit)
@@ -54,16 +62,12 @@ class Card
     self.value == other_card.value && self.suit == other_card.suit
   end
 
-  def self.suits
-    SUIT_STRINGS.keys
-  end
-
-  def self.values
-    CARD_VALUES.keys
-  end
-
   def <=>(other_card)
     CARD_VALUES[@value] <=> CARD_VALUES[other_card.value]
+  end
+
+  def value_int
+    CARD_VALUES[@value]
   end
 
 end
