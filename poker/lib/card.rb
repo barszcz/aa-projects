@@ -1,5 +1,5 @@
 class Card
-  
+
   SUIT_STRINGS = {
     :clubs    => "♣",
     :diamonds => "♦",
@@ -22,5 +22,16 @@ class Card
     :king  => "K",
     :ace   => "A"
   }
+
+  attr_reader :value, :suit
+
+  def initialize(value, suit)
+    raise "Invalid card!" unless Card.valid_card?(value, suit)
+    @value, @suit = value, suit
+  end
+
+  def self.valid_card?(value, suit)
+    VALUE_STRINGS.has_key?(value) && SUIT_STRINGS.has_key?(suit)
+  end
 
 end
