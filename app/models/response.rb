@@ -18,7 +18,7 @@ class Response < ActiveRecord::Base
     self.question.responses.where("responses.id != ?", self.id)
   end
 
-  private
+#  private
   def respondent_has_not_already_answered_question
     if sibling_responses.exists?(user_id: self.user_id)
       errors[:user_id] << "this user already responded to this question"
@@ -26,6 +26,7 @@ class Response < ActiveRecord::Base
   end
 
   def author_cannot_respond_to_own_poll
+
     if question.poll.author_id == self.user_id
       errors[:user_id] << "A poll's author cannot respond to their own poll"
     end

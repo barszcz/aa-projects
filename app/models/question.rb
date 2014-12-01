@@ -32,7 +32,7 @@ class Question < ActiveRecord::Base
       [answer.text, answer.responses_count]
     end.to_h
   end
- end
+end
 #
 # SELECT
 #   answer_choices.*, COUNT(responses.id)
