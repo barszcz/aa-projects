@@ -31,20 +31,26 @@
       <tr>
         <td>Start Date</td>
         <td>End Date</td>
+        <td>Requested by</td>
+        <td>Status</td>
       </tr>
       <% CatRentalRequest.where(cat_id: @cat.id).order(:start_date).each do |req| %>
       <tr>
         <td><%= req.start_date %></td>
         <td><%= req.end_date %></td>
-        <% if req.pending? %>
+        <td><%= req.user.username %></td>
+        <td><%= req.status %></td>
+        <% if req.pending? && @cat.user_id == current_user.id %>
         <td>
           <form action="/cat_rental_requests/<%= req.id %>/approve" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
             <input type="submit" value="Approve">
             <input type="hidden" name="_method" value="PATCH">
           </form>
         </td>
         <td>
           <form action="/cat_rental_requests/<%= req.id %>/deny" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
             <input type="submit" value="Deny">
             <input type="hidden" name="_method" value="PATCH">
           </form>

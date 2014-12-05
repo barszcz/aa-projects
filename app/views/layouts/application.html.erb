@@ -1,13 +1,33 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>NinetyNineCats</title>
-  
+
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+  <%= render partial: "layouts/errors" %>
+
+
+  <% if current_user %>
+  <h1><%= "Welcome #{current_user.username}!" %></h1>
+  <form id="form_id" action="/session/" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="delete">
+
+    <input type="submit" value="Log Out!">
+
+  </form>
+  <% else %>
+  <h1><a href="/session/new/" class: "login">Login!</a></h1>
+  <% end %>
+
+
 <%= yield %>
 
+  <a href="/cat_rental_requests/new">Make a new rental request</a>
 </body>
 </html>
