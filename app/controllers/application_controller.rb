@@ -26,4 +26,8 @@ class ApplicationController < ActionController::Base
   def ensure_logged_in
     redirect_to new_session_url unless logged_in?
   end
+
+  def ensure_admin
+    redirect_to bands_url unless current_user.admin?
+  end
 end

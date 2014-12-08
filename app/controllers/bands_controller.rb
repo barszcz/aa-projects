@@ -1,5 +1,6 @@
 class BandsController < ApplicationController
   before_action :ensure_logged_in
+  before_action :ensure_admin, only: [:create, :update, :destroy]
 
   def index
     @bands = Band.all

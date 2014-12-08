@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
   before_action :ensure_logged_in
+  before_action :ensure_admin, only: [:create, :update, :destroy]
 
   def new
     @band = Band.find(params[:band_id])

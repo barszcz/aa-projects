@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
     self.activated
   end
 
+  def admin?
+    self.admin
+  end
+
   def ensure_session_token
     self.session_token ||= generate_token
   end
