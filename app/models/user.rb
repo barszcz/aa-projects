@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   attr_accessor :password
 
+  has_many :notes
+
   def generate_session_token
     SecureRandom.urlsafe_base64
   end
