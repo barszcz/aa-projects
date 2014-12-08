@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208201504) do
+ActiveRecord::Schema.define(version: 20141208213700) do
 
   create_table "albums", force: true do |t|
     t.string   "title",      null: false
@@ -55,11 +55,13 @@ ActiveRecord::Schema.define(version: 20141208201504) do
   add_index "tracks", ["title"], name: "index_tracks_on_title"
 
   create_table "users", force: true do |t|
-    t.string   "email",           null: false
-    t.string   "password_digest", null: false
-    t.string   "session_token",   null: false
+    t.string   "email",                            null: false
+    t.string   "password_digest",                  null: false
+    t.string   "session_token",                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "activated",        default: false, null: false
+    t.string   "activation_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
