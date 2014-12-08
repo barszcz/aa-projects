@@ -1,0 +1,16 @@
+<h1>Create new album for <%= @band.name %></h1>
+
+<form id="form_id" action="/albums" method="post">
+  <%= auth_token_input %>
+  <input type="hidden" name="album[band_id]" value="<%= @band.id %>">
+  <label for="title">Title:</label>
+  <input type="text" name="album[title]" value="">
+  <br><br>
+  <label>Album Type:</label>
+  <label for="studio">Studio</label>
+  <input type="radio" name="album[kind]" value="studio" id="studio" checked>
+  <label for="live">Live</label>
+  <input type="radio" name="album[kind]" value="live" id="live">
+  <input type="submit" value="Create album">
+
+</form>

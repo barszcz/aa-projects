@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   resources :albums, except: :new do
-    resources :track, only: :new
+    resources :tracks, only: :new
   end
 
   resources :tracks, except: :new
