@@ -13,4 +13,16 @@ class Post < ActiveRecord::Base
     foreign_key: :author_id,
     primary_key: :id
   )
+
+  def top_level_comments
+    self.comments.where(parent_comment_id: nil)
+  end
+
+  def comments_by_parent_id
+    comment_hash = Hash.new { |h, k| h[k] = [] }
+    self.comments.each do |comment|
+      comment_hash[comment.parent_comment_id] << comment
+    end
+    comment_hash
+  end
 end

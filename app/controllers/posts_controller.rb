@@ -40,8 +40,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    render :show
-
+    @comment_hash = @post.comments_by_parent_id
   end
 
   def ensure_correct_author

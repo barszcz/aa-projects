@@ -1,0 +1,7 @@
+<ul>
+<%=comment.content %> - <%= comment.author.name %> at <%= comment.created_at %>
+
+<% @comment_hash[comment.id].each do |child| %>  
+  <%= render "comments/comment", comment: child %>
+<% end %>
+</ul>
