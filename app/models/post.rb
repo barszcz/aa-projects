@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  include Votable
+
   validates :title, :author_id, presence: true
 
   has_many :post_subs, inverse_of: :post
