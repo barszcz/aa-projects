@@ -6,3 +6,20 @@
 <br>
 
 <a href="<%= edit_post_url(@post) %>">Edit this post</a>
+
+<br>
+
+<h3>Subs</h3>
+<ul>
+  <% @post.subs.each do |sub| %>
+    <li><%= sub.title %></li>
+  <% end %>
+</ul>
+
+<h3>Comments:</h3>
+<% @post.comments.each do |comment| %>
+  <%= comment.content %>
+  <br>
+<% end %>
+
+<a href="<%= new_post_comment_url(@post) %>">Add comment</a>
