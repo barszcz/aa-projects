@@ -10,6 +10,13 @@
 
   <% if logged_in? %>
     <h2><%= "Hello, #{current_user.name}!" %></h2>
+    <br>
+    <form id="form_id" action="<%= session_url %>" method="post">
+      <%= method_input("delete") %>
+      <%= auth_token_input %>
+      <input type="submit" value="Log Out">
+
+    </form>
   <% end %>
 
 <%= yield %>
