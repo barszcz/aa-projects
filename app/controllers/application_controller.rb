@@ -11,11 +11,16 @@ class ApplicationController < ActionController::Base
 
   def current_user
     return nil if session[:session_token].nil?
-    user = User.find_by(session_token: session[:session_token])
+    User.find_by(session_token: session[:session_token])
   end
 
   def logged_in?
     !!current_user
+  end
+
+  def log_out!
+    current_user.reset_session_token!
+    session[:session_token] = nil
   end
 
 end

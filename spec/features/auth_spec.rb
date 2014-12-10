@@ -59,8 +59,16 @@ end
 
 feature "logging out" do
 
-  it "begins with logged out state"
+  it "begins with logged out state" do
+    visit new_session_url
+    expect(page).to have_no_button "Log out"
+  end
 
-  it "doesn't show username on the homepage after logout"
+  it "doesn't show username on the homepage after logout" do
+    sign_up("test_username", "test_password")
+    sign_in("test_username", "test_password")
+    click_button("Log out")
+    expect(page).to_not have_content "test_username"
+  end
 
 end
