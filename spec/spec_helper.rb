@@ -97,3 +97,11 @@ def sign_up(username, password)
   fill_in 'password', with: password
   click_on "create user"
 end
+
+def sign_in(username, password)
+  visit new_session_url
+  fill_in 'username', with: username
+  fill_in 'password', with: password
+  click_on "sign in"
+  # save_and_open_page
+end
