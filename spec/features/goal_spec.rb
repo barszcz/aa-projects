@@ -58,16 +58,36 @@ feature "goals" do
       expect(page).to have_content("Private goal")
     end
 
-    it "has link to goals page"
+    it "has link to goal page" do
+      fill_in "Aim", with: "Private goal"
+      choose "Private"
+      click_button "Create Goal"
+      expect(page).to have_link("Private goal")
+    end
 
   end
 
   feature "goal page" do
 
-    it "displays correct goal"
+    it "displays correct goal" do
+      make_goals("goal1", "goal2", "goal3")
+      click_link "goal1"
+      expect(page).to have_content("goal1")
+    end
 
-    it "can change goal completion"
+    it "can change goal completion" do
+      make_goals("goal1", "goal2")
+      click_link "goal1"
+      expect(page).to have_button("Complete")
+    end
 
+    it "it actually changes goal completion" do
+      make_goals("goal1", "goal2")
+      click_link "goal1"
+      save_and_open_page
+      click_button("Complete")
+      expect(page).to have_content("Completed")
+    end
     it "has button to destroy goal"
 
     it "destroys goal"

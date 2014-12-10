@@ -3,7 +3,7 @@
 <% @user.goals.each do |goal| %>
 
   <% if goal.public? || goal.user_id == current_user.id %>
-    <%= goal.aim %>
+    <a href="<%= goal_url(goal) %>"><%= goal.aim %></a>
     <br>
     <%= "<strong>Complete!</strong>".html_safe if goal.completed? %>
   <% end %>

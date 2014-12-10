@@ -15,6 +15,16 @@ class GoalsController < ApplicationController
     end
   end
 
+  def show
+    @goal = Goal.find(params[:id])
+  end
+
+  def complete
+    @goal = Goal.find(params[:id])
+    @goal.toggle!(:completed)
+    render :show
+  end
+
   private
 
   def goal_params

@@ -105,3 +105,20 @@ def sign_in(username, password)
   click_on "sign in"
   # save_and_open_page
 end
+
+
+def make_goals(*aims, public: true)
+
+
+  aims.each do |aim|
+    visit new_goal_url
+    fill_in 'Aim', with: aim
+    unless public
+      choose "Private"
+    else
+      choose "Public"
+    end
+    click_button "Create Goal"
+  end
+
+end
