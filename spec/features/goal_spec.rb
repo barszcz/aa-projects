@@ -109,21 +109,53 @@ feature "goals" do
       expect(page).to_not have_content("Private goal")
     end
 
-    it "does not redirect if goal is public"
+    it "does not redirect if goal is public" do
+      make_goals("Public goal", public: true)
+      click_button("Log out")
+      sign_up("user2", "password2")
+      visit goal_url(Goal.last)
+      expect(page).to have_content("Public goal")
+    end
 
-    it "does not show a link to edit or destroy for wrong user"
+    it "does not show a link to edit or destroy for wrong user" do
+      click_button("Log out")
+      sign_up("user2", "password2")
+      visit goal_url(Goal.last)
+      expect(page).to_not have_button("Complete")
+      expect(page).to_not have_button("Delete")
+    end
 
   end
 
   feature "edit page" do
 
-    it "fills form with current information"
+    before(:each) do
+      make_goals("goal1", "goal2", "goal3")
+      click_link "goal1"
+      click_link "Edit goal"
+    end
 
-    it "properly updates the user's goals"
+    it "fills form with current information" do
+      expect(page).to have_field('Aim', with: 'goal1')
+    end
 
-    it "redirects users who can't edit the goal"
+    it "properly updates the user's goals" do
+      fill_in "Aim", with: "I've changed"
+      click_button "Edit Goal"
+      expect(page).to have_content "I've changed"
+    end
 
-    it "can change goal completion"
+    it "redirects users who can't edit the goal" do
+      click_button("Log out")
+      sign_up("user2", "password2")
+      visit edit_goal_url(Goal.last)
+      expect(page).to_not have_selector('#edit_form')
+    end
+
+    it "can change goal completion" do
+      click_button("Complete")
+      expect(page).to have_content("Completed")
+    end
 
 
   end

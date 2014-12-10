@@ -18,6 +18,14 @@ class GoalsController < ApplicationController
     end
   end
 
+  def update
+    if @goal.update(goal_params)
+      render :show
+    else
+      flash.now[:errors] = @goal.errors.full_messages
+      render :edit
+    end
+  end
 
   def complete
     @goal.toggle!(:completed)
