@@ -1,4 +1,7 @@
 class GoalsController < ApplicationController
+  before_action :ensure_logged_in
+  before_action :private_bouncer, except: [:new, :create]
+
   def new
     @goal = Goal.new
   end
@@ -15,19 +18,26 @@ class GoalsController < ApplicationController
     end
   end
 
-  def show
-    @goal = Goal.find(params[:id])
-  end
 
   def complete
-    @goal = Goal.find(params[:id])
     @goal.toggle!(:completed)
     render :show
+  end
+
+  def destroy
+
+    @goal.destroy
+    redirect_to user_url(@goal.user)
   end
 
   private
 
   def goal_params
     params.require(:goal).permit(:aim, :public)
+  end
+
+  def private_bouncer
+    @goal = Goal.find(params[:id])
+    redirect_to user_url(@goal.user) unless @goal.user == current_user
   end
 end

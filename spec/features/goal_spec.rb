@@ -69,32 +69,45 @@ feature "goals" do
 
   feature "goal page" do
 
-    it "displays correct goal" do
+    before(:each) do
       make_goals("goal1", "goal2", "goal3")
       click_link "goal1"
+    end
+    it "displays correct goal" do
+
       expect(page).to have_content("goal1")
     end
 
     it "can change goal completion" do
-      make_goals("goal1", "goal2")
-      click_link "goal1"
       expect(page).to have_button("Complete")
     end
 
     it "it actually changes goal completion" do
-      make_goals("goal1", "goal2")
-      click_link "goal1"
-      save_and_open_page
       click_button("Complete")
       expect(page).to have_content("Completed")
     end
-    it "has button to destroy goal"
 
-    it "destroys goal"
+    it "has button to destroy goal" do
+      expect(page).to have_button("Delete goal")
+    end
 
-    it "has link to edit page"
+    it "destroys goal" do
+      click_button("Delete goal")
+      expect(page).to_not have_content("goal1")
+      expect(page).to have_content("goal2")
+    end
 
-    it "redirects if goal is private does not belong to user"
+    it "has link to edit page" do
+      expect(page).to have_link("Edit goal")
+    end
+
+    it "redirects if goal is private and does not belong to user" do
+      make_goals("Private goal", public: false)
+      click_button("Log out")
+      sign_up("user2", "password2")
+      visit goal_url(Goal.last)
+      expect(page).to_not have_content("Private goal")
+    end
 
     it "does not redirect if goal is public"
 
