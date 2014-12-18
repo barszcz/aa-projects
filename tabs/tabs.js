@@ -22,7 +22,7 @@
     this.$activeTab.one("transitionend", endTransition.bind(this));
 
     function endTransition(transEvent) {
-      var $transTab = $(transEvent.currentTarget); //old active <article>
+      var $transTab = $(transEvent.currentTarget);
       $transTab.removeClass("transitioning");
 
       var $targetTab = $($target.attr("href"));
