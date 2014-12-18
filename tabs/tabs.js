@@ -6,18 +6,36 @@
 
   $.Tabs = function (el) {
     this.$el = $(el);
-    // this.$contentTabs = $(this.$el.data("content-tabs"));
-    this.$activeTab = $(".active");
+    this.$contentTabs = $(this.$el.data("content-tabs"));
+    this.$activeTab = this.$contentTabs.find(".active");
     this.$el.on("click", "a", this.clickTab.bind(this));
   }
 
   $.Tabs.prototype.clickTab = function (event) {
     event.preventDefault();
-    $target = $(event.currentTarget);
-    this.$activeTab.removeClass("active");
+
+    var $target = $(event.currentTarget);
+    $(".active").removeClass("active");
+    this.$activeTab.addClass("transitioning");
     $target.addClass("active");
-    $($target.attr("href")).addClass("active");
-    this.$activeTab = $(".active");
+
+    this.$activeTab.one("transitionend", endTransition.bind(this));
+
+    function endTransition(transEvent) {
+      var $transTab = $(transEvent.currentTarget); //old active <article>
+      $transTab.removeClass("transitioning");
+
+      var $targetTab = $($target.attr("href"));
+
+      $targetTab.addClass("transitioning");
+
+      setTimeout(function () {
+        $targetTab.removeClass("transitioning").addClass("active");
+      }, 0)
+      this.$activeTab = $targetTab;
+
+    }
+
   };
 
   $.fn.tabs = function () {

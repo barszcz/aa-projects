@@ -21,8 +21,16 @@ a {
 
 .tab-pane {
   display: none;
+  /*position: absolute;*/
+  -webkit-transition: opacity 500ms linear;
 }
 
 .tab-pane.active {
   display: block;
+  opacity: 1;
+}
+
+.transitioning {
+  display: block;
+  opacity: 0;
 }
