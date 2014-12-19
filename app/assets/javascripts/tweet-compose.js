@@ -5,6 +5,8 @@ var TweetCompose = $.TweetCompose = function (el) {
   this.$ul = $(this.$el.data("tweets-ul"));
   this.$el.on("submit", this.submit.bind(this));
   $(".tweet-compose textarea").on('input', this.charsLeftHandler.bind(this));
+  $("a.add-mentioned-user").on('click', this.addMentionedUser);
+  $(".tweet-compose").on('click', "a.remove-mentioned-user", this.removeMentionedUser);
 }
 
 TweetCompose.prototype.submit = function (event) {
@@ -33,6 +35,16 @@ TweetCompose.prototype.handleSuccess = function (data) {
   $inputs.not(".dontclear").val("");
   var $li = "<li>" + JSON.stringify(data) + "</li>";
   this.$ul.prepend($li);
+};
+
+TweetCompose.prototype.addMentionedUser = function () {
+  var $scriptTag = $("script.mention-script");
+  $("div.mentioned-users").append($scriptTag.html());
+};
+
+TweetCompose.prototype.removeMentionedUser = function (event) {
+  $currentTarget = $(event.currentTarget);
+  $currentTarget.parent().remove();
 };
 
 $.fn.tweetCompose = function () {
