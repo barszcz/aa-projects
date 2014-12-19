@@ -12,7 +12,7 @@ UsersSearch.prototype.handleInput = function (event) {
     dataType: "json",
     data: { query: this.$input.val() },
     success: this.renderResults.bind(this)
-  })
+  });
 };
 
 UsersSearch.prototype.renderResults = function (users) {
