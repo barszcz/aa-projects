@@ -33,8 +33,8 @@ TweetCompose.prototype.handleSuccess = function (data) {
   var $inputs = this.$el.find(":input");
   $inputs.prop("disabled", false);
   $inputs.not(".dontclear").val("");
-  var $li = "<li>" + JSON.stringify(data) + "</li>";
-  this.$ul.prepend($li);
+  var li = "<li>" + JSON.stringify(data) + "</li>";
+  this.$ul.prepend(li);
 };
 
 TweetCompose.prototype.addMentionedUser = function () {

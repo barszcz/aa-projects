@@ -4,6 +4,7 @@ class FeedsController < ApplicationController
   LIMIT = 20
 
   def show
+    params[:max_created_at] ||= Time.now
     @feed_tweets =
       current_user.feed_tweets(LIMIT, params[:max_created_at]).includes(:user)
     respond_to do |format|
