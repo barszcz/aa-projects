@@ -4,7 +4,10 @@ window.JournalApp = {
   Views: {},
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
+    this.posts = new JournalApp.Collections.Posts();
+    this.posts.fetch();
+    var router = new JournalApp.Routers.Router({$rootEl: $('#everything')});
+    Backbone.history.start();
   }
 };
 
