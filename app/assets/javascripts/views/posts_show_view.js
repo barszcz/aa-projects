@@ -8,7 +8,7 @@ JournalApp.Views.PostsShowView = Backbone.View.extend({
   },
 
   events: {
-    "dblclick h1.title": "editTitle",
+    "dblclick h2.title": "editTitle",
     "dblclick pre.body": "editBody",
     "blur input.title": "saveNewTitle",
     "blur textarea.body": "saveNewBody"
