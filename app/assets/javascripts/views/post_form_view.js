@@ -5,7 +5,7 @@ JournalApp.Views.PostFormView = Backbone.View.extend({
   initialize: function () {
     this.listenTo(this.model, "sync", function () {
       this.collection.add(this.model, {merge: true});
-      Backbone.history.navigate('/', {trigger: true});
+      //Backbone.history.navigate('/', {trigger: true});
     }.bind(this));
   },
 

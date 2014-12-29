@@ -2,6 +2,13 @@ JournalApp.Routers.Router = Backbone.Router.extend({
 
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
+    this.$sidebar = this.$rootEl.find('#sidebar');
+    this.$content = this.$rootEl.find('#content');
+
+    this.sidebarView = new JournalApp.Views.PostsIndexView({
+      collection: JournalApp.posts
+    });
+    this.$sidebar.html(this.sidebarView.render().$el);
   },
 
   routes: {
@@ -11,21 +18,21 @@ JournalApp.Routers.Router = Backbone.Router.extend({
   },
 
   index: function () {
-    var indexView = new JournalApp.Views.PostsIndexView({
-      collection: JournalApp.posts
-    });
-    this.$rootEl.html(indexView.render().$el);
+    this.$content.html("<h2>Hi, this is the index page.</h2>");
   },
 
   show: function (id) {
-    var post = JournalApp.posts.getOrFetch(id, {success: function() {
-      var showView = new JournalApp.Views.PostsShowView({
+    var that = this;
+    var post = JournalApp.posts.getOrFetch(id)
+    var showView = new JournalApp.Views.PostsShowView({
         model: post
-      })
-      this.$rootEl.html(showView.render().$el)
-    }.bind(this)})
+    })
 
-    console.log(post);
+    that.$content.html(showView.render().$el);
+
+    showView.listenTo(post, "sync", function() {
+      that.$content.html(showView.render().$el)
+    });
   },
 
   new: function () {
@@ -34,6 +41,6 @@ JournalApp.Routers.Router = Backbone.Router.extend({
       model: post,
       collection: JournalApp.posts
     });
-    this.$rootEl.html(postFormView.render().$el);
+    this.$content.html(postFormView.render().$el);
   }
 });

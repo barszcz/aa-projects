@@ -1,4 +1,2 @@
-<li>
-  <%= post.get('title') %>
-  <button class='delete-button' data-id='<%= post.id %>'>Delete</button>
-</li>
+<a href="#posts/<%= post.id %>"><%= post.get('title') %></a>
+<button class='delete-button' data-id='<%= post.id %>'>Delete</button>

@@ -5,9 +5,10 @@ window.JournalApp = {
   Routers: {},
   initialize: function() {
     this.posts = new JournalApp.Collections.Posts();
-    this.posts.fetch();
-    var router = new JournalApp.Routers.Router({$rootEl: $('#everything')});
-    Backbone.history.start();
+    this.posts.fetch({ success: function() {
+      new JournalApp.Routers.Router({$rootEl: $('#everything')});
+      Backbone.history.start();
+    }});
   }
 };
 

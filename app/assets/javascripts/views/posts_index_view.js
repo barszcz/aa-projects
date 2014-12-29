@@ -1,8 +1,12 @@
 JournalApp.Views.PostsIndexView = Backbone.View.extend({
   template: JST["postsIndex"],
   initialize: function(options) {
-    this.listenTo(this.collection, "remove add change:title reset sync",
-                  this.render)
+    this.listenTo(this.collection, "add", function(model) {
+      this.render();
+      Backbone.history.navigate("posts/"+model.id, {trigger: true});
+    });
+
+    this.listenTo(this.collection, "remove change:title reset sync", this.render);
   },
   tagName: 'ul',
 
