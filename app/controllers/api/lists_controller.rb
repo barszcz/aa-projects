@@ -1,6 +1,7 @@
 module Api
   class ListsController < ApiController
     before_action :require_board_member!
+    wrap_parameters false
 
     def create
       @list = current_board.lists.new(list_params)

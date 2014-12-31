@@ -1,0 +1,18 @@
+<h2><%= board.escape('title') %></h2>
+
+
+<ul>
+
+<% if (board.lists()) { %>
+<% board.lists().each(function(list) { %>
+  <li><%= list.escape('title') %></li>
+
+  <% }) %>
+  <% } %>
+
+</ul>
+<div class="new-list-form">
+
+</div>
+
+<button class="delete-button">Delete board</button>
