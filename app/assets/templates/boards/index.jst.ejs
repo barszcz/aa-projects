@@ -1,0 +1,8 @@
+<h2>Boards!</h2>
+<a href="#boards/new">New Board!</a>
+<ul>
+
+<% boards.each(function(board) { %>
+  <li><%= board.escape('title') %></li>
+<% }) %>
+</ul>
