@@ -5,4 +5,13 @@
 
 json.(@board, :id, :title)
 
-json.lists @board.lists, :id, :title, :ord
+json.lists do
+  json.array! @board.lists do |list|
+     json.(list, :id, :title, :ord)
+     json.cards do
+       json.array! list.cards do |card|
+         json.(card, :id, :title, :description, :ord, :list_id)
+       end
+     end
+  end
+end

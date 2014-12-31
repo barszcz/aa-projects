@@ -1,16 +1,20 @@
 <h2><%= board.escape('title') %></h2>
 
 
-<ul>
 
 <% if (board.lists()) { %>
 <% board.lists().each(function(list) { %>
-  <li><%= list.escape('title') %></li>
+  <h2><%= list.escape('title') %></h2>
+  <ul>
+  <% list.cards().each(function(card) { %>
+  <% debugger %>
+    <li><%= card.escape('title') %></li>
+    <% }) %>
+  </ul>
 
   <% }) %>
   <% } %>
 
-</ul>
 <div class="new-list-form">
 
 </div>
