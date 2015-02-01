@@ -1,0 +1,31 @@
+<h1>Search!</h1>
+
+<!-- <form action="/users/search" method="GET">
+  <input
+    type="text"
+    name="query"
+    value="<%= @query %>">
+
+  <input type="submit" value="Search Users!">
+</form> -->
+
+<section class="users-search">
+  <label for="username">Username:</label>
+  <input type="text" name="username" id="username">
+
+  <ul class="users">
+
+  </ul>
+</section>
+
+
+<script type="text/template" id='user-template'>
+  <%% follow_state = user.followed ? "followed" : "unfollowed" %>
+  <li>
+    <a href="<%%= "/users/" + user.id %>"> <%%= user.username %></a>
+    <button class="follow-toggle" name="button"
+      data-user-id="<%%= user.id %>"
+      data-initial-follow-state="<%%= follow_state %>">
+    </button>
+  </li>
+</script>
