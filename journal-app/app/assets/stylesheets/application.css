@@ -1,0 +1,75 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:700,400);
+@import url(http://fonts.googleapis.com/css?family=PT+Serif);
+
+html, body, div, ul, li, a, main, h1, h2, pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+}
+
+h1#apptitle {
+  display: block;
+  width: 25%;
+  margin: 0 auto;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: 'Open Sans', sans-serif;
+  /*position: absolute;*/
+  margin: 0 auto;
+}
+
+li {
+  list-style: none;
+  font-family: 'PT Serif', serif;
+}
+
+div#sidebar {
+  /*background-color: orange;*/
+  /*margin-top: 100px;*/
+  margin-left: 20px;
+  border: 3px solid red;
+  border-radius: 5px;
+  float: left;
+}
+
+div#content {
+  width: 25%;
+  margin: 100px auto;
+  /*background-color: orange;*/
+}
+
+.clearfix:after {
+  content:"";
+  /*display:table;*/
+  clear:both;
+}
+
+pre {
+  font-family: 'PT Serif', serif;
+  margin-top: 20px;
+}
