@@ -1,0 +1,22 @@
+<h1> <%= @goal.aim %> </h1>
+<% if @goal.completed? %>
+  <ul>
+    <li>Completed</li>
+  </ul>
+<% end %>
+<br>
+<% if current_user.id == @goal.user_id %>
+
+<form id="complete" action="<%= complete_goal_url(@goal) %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="submit" value="Complete goal">
+</form>
+
+<form id="delete" action="<%= goal_url(@goal) %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete goal">
+</form>
+
+<a href="<%= edit_goal_url(@goal) %>">Edit goal</a>
+
+<% end %>

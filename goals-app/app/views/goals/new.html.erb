@@ -1,0 +1,13 @@
+<h2>New Goal</h2>
+<form id="form_id" action="<%= goals_url %>" method="post">
+  <label for="aim">Aim</label>
+  <textarea id="aim" name="goal[aim]"></textarea>
+  <label for="public">Public</label>
+  <input type="radio" id="public" name="goal[public]" value="true">
+  <br>
+  <label for="private">Private</label>
+    <input type="radio" id="private" name="goal[public]" value="false">
+  <br>
+  <input type="submit" value="Create Goal">
+
+</form>

@@ -1,0 +1,28 @@
+<h2>Edit Goal</h2>
+<form id="edit_form" action="<%= goal_url(@goal) %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+
+  <label for="aim">Aim</label>
+  <textarea id="aim" name="goal[aim]"><%= @goal.aim %></textarea>
+  <label for="public">Public</label>
+  <input type="radio"
+  id="public"
+  name="goal[public]"
+  value="true"
+  <%= "checked" if @goal.public? %>>
+  <br>
+  <label for="private">Private</label>
+  <input type="radio"
+  id="private"
+  name="goal[public]"
+  value="false"
+  <%= "checked" unless @goal.public? %>>
+  <br>
+  <input type="submit" value="Edit Goal">
+
+  <form id="complete" action="<%= complete_goal_url(@goal) %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <input type="submit" value="Complete goal">
+  </form>
+
+</form>
