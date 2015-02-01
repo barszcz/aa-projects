@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MusicApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <% if flash[:errors] || flash.now[:errors] %>
+    <% flash[:errors].each do |error| %>
+      <%= error %>
+    <% end %>
+
+  <% end %>
+
+
+
+  <% if logged_in? %>
+    <h1>Hello <%= current_user.email %>, you're logged in!</h1>
+    <form id="form_id" action="/session" method="post">
+      <%= method_input("delete") %>
+      <%= auth_token_input %>
+      <input type="submit" value="Log Out">
+
+    </form>
+  <% end %>
+
+<%= yield %>
+
+</body>
+</html>

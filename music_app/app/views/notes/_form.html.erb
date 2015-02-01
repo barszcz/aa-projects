@@ -1,0 +1,7 @@
+<form id="form_id" action="/notes" method="post">
+  <%= auth_token_input %>
+  <input type="hidden" name="note[track_id]" value="<%= @track.id %>">
+  <label>Post note:</label><br>
+  <textarea name="note[body]" rows="4" cols="30"></textarea>
+  <input type="submit" value="Post">
+</form>

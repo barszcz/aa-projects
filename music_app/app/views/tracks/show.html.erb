@@ -1,0 +1,22 @@
+<h1><%= @track.title %></h1>
+<h2><%= "By #{@track.band.name}, from #{@track.album.title}" %></h2>
+
+<% if @track.lyrics %>
+  <h2>Lyrics</h2>
+  <pre><%= ugly_lyrics(@track.lyrics) %></pre>
+<% end %>
+<br><br>
+
+<%= render "/notes/note" %>
+<br><br>
+<%= render "/notes/form" %>
+
+<a href="<%= edit_track_url(@track) %>">Edit Track</a>
+<br>
+<a href="<%= album_url(@track.album) %>">Back to album</a>
+<br><form id="form_id" action="<%= track_url(@track) %>" method="post">
+  <%= auth_token_input %>
+  <%= method_input("delete") %>
+  <input type="submit" value="Delete track">
+
+</form>

@@ -1,0 +1,16 @@
+<h1><%= "Edit #{@album.band.name} - #{@album.title}" %> </h1>
+
+<form id="form_id" action="<%= album_url(@album) %>" method="post">
+  <%= auth_token_input %>
+  <%= method_input("patch") %>
+  <label for="title">Title:</label>
+  <input type="text" name="album[title]" value="<%= @album.title %>">
+  <br><br>
+  <label>Album Type:</label>
+  <label for="studio">Studio</label>
+  <input type="radio" name="album[kind]" value="studio" id="studio" <%= "checked" if @album.kind == "studio" %>>
+  <label for="live">Live</label>
+  <input type="radio" name="album[kind]" value="live" id="live" <%= "checked" if @album.kind == "live" %>>
+  <input type="submit" value="Edit album">
+
+</form>
